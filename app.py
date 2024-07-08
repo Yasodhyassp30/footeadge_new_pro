@@ -52,16 +52,11 @@ def handle_join_room(data):
 @socketio.on("start_processing")
 def start_processing(data):
     logger.info("Start processing request.")
-    video_origin = data["type"]
     video_path = data["video_path"]
 
-    if video_origin == SCOUTING:
-        video_type = data["videoType"]
-        scouting_main(video_path, video_type, socketio=socketio)
-    else:
-        ret = tactical_analysis_video(video_path,socketio=socketio)
-        if ret == 0:
-            print(f"Processing of video {video_path} completed")
+    ret = tactical_analysis_video(video_path,socketio=socketio)
+    if ret == 0:
+        print(f"Processing of video {video_path} completed")
     logger.info("End processing request.")
     return None
 
