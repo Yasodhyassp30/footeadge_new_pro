@@ -1,0 +1,42 @@
+# Virtual environment
+.venv/
+venv/
+env/
+*.pyc
+*.pyo
+__pycache__/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Other generated files
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+# OS-specific files
+.DS_Store
+Thumbs.db
