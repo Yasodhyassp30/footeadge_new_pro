@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from apis.tactical_analysis.blueprint import tactical_analysis, tactical_analysis_video
 from utils.logger import configure_logger
 from database.databaseConnection import get_db
-from constants.commonConstnats import SCOUTING
 from apis.authentication.blueprint import user
 from apis.reports.reports import register_reports_blueprints
 
