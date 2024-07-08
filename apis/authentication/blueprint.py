@@ -15,16 +15,17 @@ def register():
         if user_exists:
             return jsonify({'error': 'User already exists'}), 400
         salt = bcrypt.gensalt()
+        
         hashed_password = bcrypt.hashpw(user['password'].encode('utf-8'), salt)
-        tenant = user['tenant'] or 'fyp_group_5'
-        user_role = user['user_role'] or 1
-        username = user['username'] or None
+        tenant = user.get('tenant', 'fyp_group_5')
+        user_role = user.get('user_role', 1)
+        username = user.get('username')
         user['password'] = hashed_password
         user['tenant'] = tenant
         user['user_role'] = user_role
         user['username'] = username
-
         result = db.users.insert_one(user)
+        
         if result.inserted_id:
             del user['password']
             user['_id'] = str(result.inserted_id)
