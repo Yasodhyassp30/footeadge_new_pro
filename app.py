@@ -9,10 +9,7 @@ from utils.logger import configure_logger
 from database.databaseConnection import get_db
 from apis.authentication.blueprint import user
 from apis.reports.reports import register_reports_blueprints
-
-
-
-
+from apis.player_profile.register_players import register_players_blueprints
 
 
 load_dotenv()
@@ -26,10 +23,10 @@ logger = configure_logger()
 app.register_blueprint(tactical_analysis)
 app.register_blueprint(user)
 register_reports_blueprints(app)
+register_players_blueprints(app)
 
 
-
-app.config['Mongo_db'] = get_db();
+app.config["Mongo_db"] = get_db()
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 
@@ -53,7 +50,7 @@ def start_processing(data):
     logger.info("Start processing request.")
     video_path = data["video_path"]
 
-    ret = tactical_analysis_video(video_path,socketio=socketio)
+    ret = tactical_analysis_video(video_path, socketio=socketio)
     if ret == 0:
         print(f"Processing of video {video_path} completed")
     logger.info("End processing request.")
