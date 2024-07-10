@@ -109,12 +109,39 @@ def get_match(id):
 
     except Exception as e:
         return jsonify({'error': "Error in getting the analysis"}), 500
+@tactical_analysis.route("/analysis/<id>/players",methods=['GET'])
+def get_match_details(id):
+    try:
+        db= current_app.config['Mongo_db']
+        data = db.analysis.find_one({'_id':ObjectId(id)})
+        if data is None:
+            return jsonify({'error': "No data found"}), 404
+        return dumps(data), 200
+
+    except Exception as e:
+        return jsonify({'error': "Error in getting the analysis"}), 500
     
 @tactical_analysis.route("/analysis/users/<id>",methods=['GET'])
 def get_user_matches(id):
     try:
         db= current_app.config['Mongo_db']
         data = db.analysis.find({'id':id},{ '_id': 1, 'name': 1 })
+        if data is None:
+            return jsonify({'error': "No data found"}), 404
+        
+        return dumps(data), 200
+
+    except Exception as e:
+        return jsonify({'error': "Error in getting the analysis"}), 500
+    
+@tactical_analysis.route("/analysis/<id>",methods=['GET'])
+def get_user_matches_details(id):
+    try:
+        db= current_app.config['Mongo_db']
+        data = db.analysis.find({'id':id},{ '_id': 1, 'name': 1 , 'date':1,'analysis': {
+            'colors':1,
+            'teams':1,
+        }})
         if data is None:
             return jsonify({'error': "No data found"}), 404
         
