@@ -4,6 +4,7 @@ from flask_socketio import SocketIO, join_room
 from dotenv import load_dotenv
 
 
+from apis.annotations.reg_annotations import register_annotations_blueprints
 from apis.tactical_analysis.blueprint import tactical_analysis, tactical_analysis_video
 from utils.logger import configure_logger
 from database.databaseConnection import get_db
@@ -24,6 +25,7 @@ app.register_blueprint(tactical_analysis)
 app.register_blueprint(user)
 register_reports_blueprints(app)
 register_players_blueprints(app)
+register_annotations_blueprints(app)
 
 
 app.config["Mongo_db"] = get_db()
