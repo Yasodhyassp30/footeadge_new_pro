@@ -292,7 +292,7 @@ class Players:
                     self.fitted_kmeans =True
                 centers = self.kmeans.cluster_centers_
                 trackers = []
-                distance_to_ball = 40
+                distance_to_ball = 60
                 for i in range(len(self.players.class_id)):
                     if self.players.class_id[i] ==2:
                         trackers.append(self.players.tracker_id[i])
@@ -300,7 +300,7 @@ class Players:
                             x1,y1,x2,y2 = self.players.xyxy[i]
                             coords = [round(((x1+x2)/2)),round(y2)]
                             distance = math.sqrt((coords[0] - self.ball[-1]["coordinates"][0])**2 + (coords[1] - self.ball[-1]["coordinates"][1])**2)
-                            if  distance<=math.sqrt((x2-x1)**2 + (y2-y1)**2)/2+20:
+                            if  distance_to_ball >distance and  distance<=math.sqrt((x2-x1)**2 + (y2-y1)**2)/2:
                                 self.ball[-1]["tracker_id"] = int(self.players.tracker_id[i])
                                 self.ball[-1]["playerC"] = coords
                                 distance_to_ball = distance

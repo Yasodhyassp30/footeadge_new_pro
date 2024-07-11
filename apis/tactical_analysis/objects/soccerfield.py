@@ -493,7 +493,7 @@ class Soccerfield:
             self.determined_topview_points +=field_base_points_to_append            
     def estimate_homography(self):
         try:
-            self.homography,mask= cv2.findHomography(np.array(self.determined_topview_points),np.array(self.determined_frame_points),cv2.RANSAC,400.0)
+            self.homography,mask= cv2.findHomography(np.array(self.determined_topview_points),np.array(self.determined_frame_points),cv2.RANSAC,300.0)
             if len(self.list_of_homographies)==12:
                 if abs(self.homography[0][2] - self.previous_homography[0][2]) <1500:
                     self.list_of_homographies.pop(0)
