@@ -307,11 +307,16 @@ def analyze():
             {
                 "role": "user",
                 "content": [
-                    """These are the frames from the soccer video. Analyze the events 
-        and provide insights on key performance indicators (KPIs) such as 
-        passing accuracy, shot accuracy, possession, player movement heatmaps, 
-        and other advanced metrics that can be highlighted from the given set of frames. 
-        Include details on notable events like goals, fouls, assists, and player performance evaluations.""",
+                    """You are generating a detailed soccer event analysis with advanced KPIs and
+        metrics based on the provided annotations and video snapshots.
+        Please provide an in-depth analysis of the soccer game, respond in Markdown.
+        Your analysis should include insights on key performance indicators (KPIs) such as
+        passing accuracy, shot accuracy, possession, player movement heatmaps, and other advanced metrics.
+        Highlight notable events like goals, fouls, assists, and player performance evaluations.
+        Provide detailed, structured insights and recommendations for future practice sessions. 
+        Include snapshots from the video where necessary to support your analysis. 
+        Ensure your report is structured to be actionable for the team's next practice session.
+        Annotations: {annotations}""",
                     *map(
                         lambda x: {
                             "type": "image_url",
